@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('contacts', [FirebaseController::class, 'index']);
 Route::get('addContact', [FirebaseController::class, 'addContact']);
 Route::post('add-contact', [FirebaseController::class, 'addContactCommit']);
+Route::get('edit-contacts/{id}', [FirebaseController::class, 'editContact']);
+Route::put('update-contact/{id}', [FirebaseController::class, 'updateDataCommit']);
+Route::get('delete-contact/{id}', [FirebaseController::class, 'DeleteData']);
 
 Route::get('/', function () {
     return view('welcome');

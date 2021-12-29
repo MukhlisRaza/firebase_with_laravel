@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+
+            @if(session('status'))
+            <h4 class="alert alert-warning mb-2">{{session('status')}}</h4>
+            @endif
+
             <div class="card">
                 <div class="card-header">
                     <h4>Contact List
@@ -11,7 +16,37 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    contact data
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $i = 1; @endphp
+                            @forelse($reference as $key => $item)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$item['first_name']}}</td>
+                                <td>{{$item['last_name']}}</td>
+                                <td>{{$item['phone']}}</td>
+                                <td>{{$item['email']}}</td>
+                                <td><a href="{{url('edit-contacts/'.$key)}}" class="btn btn-sm btn-success">Edit</a></td>
+                                <td><a href="{{url('delete-contact/'.$key)}}" class="btn btn-sm btn-danger">Delete</a></td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7">No Record</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
