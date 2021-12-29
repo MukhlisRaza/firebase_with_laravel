@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FirebaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('contacts', [FirebaseController::class, 'index']);
+Route::get('addContact', [FirebaseController::class, 'addContact']);
+Route::post('add-contact', [FirebaseController::class, 'addContactCommit']);
 
 Route::get('/', function () {
     return view('welcome');
